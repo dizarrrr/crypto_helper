@@ -15,23 +15,34 @@ export function CryptoContextProvider({children}) {
 
     useEffect(() => {
         async function preload() {
-            setLoading(true)
-            const { result } = await fakeFetchCrypto()
-            const assets = await fetchAssets()
+            try {
+                setLoading(true)
+                const { result } = await fakeFetchCrypto()
+                const assets = await fetchAssets()
 
-            setAssets(assets.map(asset => {
-                const coin = result.find(coin => coin.id === asset.id)
+                setAssets(assets.map(asset => {
+                    const coin = result.find(coin => coin.id === asset.id)
 
-                return {
-                    grow: asset.price < coin.price,
-                    growPercent: percentDifference(asset.price, coin.price),
-                    totalAmount: asset.amount * coin.price,
-                    totalProfit: asset.amount * coin.price - asset.amount * asset.price,
-                    ...asset,
-                }
-            }))
-            setCrypto(result)
-            setLoading(false)
+                    return {
+                        grow: asset.price < coin.price,
+                        growPercent: percentDifference(asset.price, coin.price),
+                        totalAmount: asset.amount * coin.price,
+                        totalProfit: asset.amount * coin.price - asset.amount * asset.price,
+                        ...asset,
+                    }
+                }))
+
+                setCrypto(result)
+                setLoading(false)
+            } catch (error) {
+                console.log(`Ошибка запроса данных о монетах: ${error}`)
+            } finally {
+                setLoading(false)
+            }
+            
+
+            
+            
         }
         preload()
     }, [])

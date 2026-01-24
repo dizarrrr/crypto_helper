@@ -6,3 +6,4 @@ export const percentDifference = (oldValue, newValue) => {
 export const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.substr(1)
 }
+

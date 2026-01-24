@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Select, Space, Button } from 'antd';
+import { Layout, Select, Space, Button, Modal, Drawer } from 'antd';
 import { useCrypto } from '../../context/crypto-context';
+import CoinInfoModal from '../CoinInfoModal';
+import AddAssetForm from '../AddAssetForm';
 
 const headerStyle = {
     width: '100%',
@@ -14,6 +16,9 @@ const headerStyle = {
 
 const AppHeader = () => {
     const [openSelect, setOpenSelect] = useState(false)
+    const [coin, setCoin] = useState(null)
+    const [modal, setModal] = useState(false)
+    const [drawer, setDrawer] = useState(true)
     const { crypto } = useCrypto()
 
     useEffect(() => {
@@ -29,14 +34,17 @@ const AppHeader = () => {
     }, [])
 
     const handlerSelect = (val) => {
+        setCoin(crypto.find(c => c.id === val))
         setOpenSelect((prev) => !prev)
+        setModal((prev) => !prev)
     }
+
 
     return(
         <Layout.Header style={headerStyle}>
             <Select
-                style={{ width: 250 }}
-                value="press / to open"
+                style={{ width: 350 }}
+                value="Нажмите '/' чтобы выбрать монету"
                 onSelect={handlerSelect}
                 onClick={() => setOpenSelect((prev) => !prev)}
                 open={openSelect}
@@ -51,7 +59,27 @@ const AppHeader = () => {
                     </Space>
                 )}
             />
-            <Button type="primary">Добавить актив</Button>
+            <Button onClick={() => setDrawer(prev => !prev)} type="primary">Добавить актив</Button>
+
+            <Modal
+                closable={{ 'aria-label': 'Custom Close Button' }}
+                open={modal}
+                footer={null}
+                onCancel={() => setModal(false)}
+            >
+                <CoinInfoModal coin={coin}/>
+            </Modal>
+
+            <Drawer
+                width={600}
+                title="Добавить монету"
+                closable={{ 'aria-label': 'Close Button' }}
+                onClose={() => setDrawer((prev) => !prev)}
+                open={drawer}
+                destroyOnClose
+            >
+                <AddAssetForm />
+            </Drawer>
         </Layout.Header>
     )
 }
