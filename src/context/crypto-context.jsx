@@ -39,16 +39,12 @@ export function CryptoContextProvider({children}) {
             } finally {
                 setLoading(false)
             }
-            
-
-            
-            
         }
         preload()
     }, [])
 
     return (
-        <CryptoContext.Provider value={{loading, crypto, assets}}>
+        <CryptoContext.Provider value={{loading, crypto, assets, setAssets}}>
             {children}
         </CryptoContext.Provider>
     )

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Divider, Flex, Space, Tag, Typography} from 'antd'
+import CryptoContext from '../context/crypto-context'
 
 
 const CoinInfoModal = ({coin}) => {
+    
+
 
     return (
         <>
