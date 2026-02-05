@@ -10,7 +10,6 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "verbatimModuleSyntax": false,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
     "allowJs": true,
@@ -40,7 +39,6 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,

@@ -11,21 +11,7 @@ const contentStyle: React.CSSProperties = {
 };
 
 const AppContent: React.FC = () => {
-    // const [coinsInfo, setCoinsInfo] = useState(null)
-
-
-    // useEffect(() => {
-    //     const getInfoCoins = async () => {
-    //         const {data} = await axios.get("http://localhost:5000/testApi/infoCoins")
-
-    //         setCoinsInfo(data)
-    //     }
-
-       
-    //     getInfoCoins()
-        
-
-    // }, [])
+    
 
     return(
         <Layout.Content style={contentStyle}>

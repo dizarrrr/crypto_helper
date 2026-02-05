@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Select, Space, Button, Modal, Drawer } from 'antd';
+import { Layout, Select, Space, Button, Modal } from 'antd';
 import { useCrypto } from '../../context/crypto-context';
 import CoinInfoModal from '../CoinInfoModal';
-import AddAssetForm from '../AddAssetForm';
 import { type ICryptoCoin } from '../../types/crypto';
 import type { DefaultOptionType } from 'antd/es/select';
+import DrawerModal from '../UI/DrawerModal';
+import { useUI } from '../../context/ui-context';
 
 
 const headerStyle: React.CSSProperties = {
@@ -21,8 +22,8 @@ const AppHeader: React.FC = () => {
     const [openSelect, setOpenSelect] = useState<boolean>(false)
     const [coin, setCoin] = useState<ICryptoCoin | null>(null)
     const [modal, setModal] = useState<boolean>(false)
-    const [drawer, setDrawer] = useState<boolean>(true)
     const { crypto } = useCrypto()
+    const { setDrawerOpen } = useUI()
 
     useEffect(() => {
         const keypress = (e: KeyboardEvent) => {
@@ -67,7 +68,7 @@ const AppHeader: React.FC = () => {
                     </Space>
                 )}
             />
-            <Button onClick={() => setDrawer(prev => !prev)} type="primary">Добавить актив</Button>
+            <Button onClick={() => setDrawerOpen()} type="primary">Добавить актив</Button>
 
             <Modal
                 closable={{ 'aria-label': 'Custom Close Button' }}
@@ -78,16 +79,7 @@ const AppHeader: React.FC = () => {
                 <CoinInfoModal coin={coin}/>
             </Modal>
 
-            <Drawer
-                width={600}
-                title="Добавить монету"
-                closable={{ 'aria-label': 'Close Button' }}
-                onClose={() => setDrawer((prev) => !prev)}
-                open={drawer}
-                destroyOnClose
-            >
-                <AddAssetForm />
-            </Drawer>
+            <DrawerModal />
         </Layout.Header>
     )
 }

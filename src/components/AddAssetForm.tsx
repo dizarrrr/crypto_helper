@@ -71,7 +71,6 @@ const AddAssetForm: React.FC = () => {
 
     return (
         <>
-            {/* contextHolder должен быть доступен всегда */}
             {contextHolder}
 
             {!coin ? (
