@@ -26,19 +26,18 @@ const Chart: React.FC = () => {
                 <Pie
                     data={dataChart}
                     animationBegin={0}
-                    animationDuration={800} // Делаем чуть медленнее
+                    animationDuration={800} 
                     nameKey="name"
                     dataKey="value"
                     cx="50%"
                     cy="50%"
-                    // --- КРАСОТА И ВИДИМОСТЬ ---
-                    innerRadius={100}      // Делаем бублик
+                    innerRadius={100}      
                     outerRadius={140}      
-                    paddingAngle={5}       // Зазоры между кусками
-                    cornerRadius={8}       // Закругленные края
-                    minAngle={15}          // МИНИМАЛЬНЫЙ УГОЛ (чтобы мелкие куски были видны)
-                    // ---------------------------
-                    stroke="none"          // Убираем стандартную обводку
+                    paddingAngle={5}       
+                    cornerRadius={8}       
+                    minAngle={15}          
+
+                    stroke="none"          
                     label={({ name }) => name}
                     labelLine={{ stroke: 'rgba(255, 255, 255, 0.3)', strokeWidth: 1 }}
                 >
