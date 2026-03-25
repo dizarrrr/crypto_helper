@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd';
-// import axios from 'axios'
+import Chart from '../charts/chart';
 
 const contentStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -11,15 +11,9 @@ const contentStyle: React.CSSProperties = {
 };
 
 const AppContent: React.FC = () => {
-    
-
     return(
         <Layout.Content style={contentStyle}>
-            {/* {coinsInfo.map(coin => {
-                return (
-                    <p>{coin.titleCoin}</p>
-                )
-            })} */}
+            <Chart/>
         </Layout.Content>
     )
 }
